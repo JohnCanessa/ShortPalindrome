@@ -7,7 +7,7 @@ It is classified under Medium difficulty.
 If interested in my approach and explanation I invite
 you to visit th efollowing post in my blog:
 
-<T.B.D.>
+https://www.johncanessa.com/2021/09/27/short-palindrome/
 
 Keep in mind that one of the best ways to lear and refresh 
 knowledge is to read and practice.
