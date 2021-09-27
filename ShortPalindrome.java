@@ -32,9 +32,9 @@ public class ShortPalindrome {
 
         // **** initialization ****
         long ans        = 0;
-        long[] first    = new long[LETTER_COUNT];
-        long[][] second = new long[LETTER_COUNT][LETTER_COUNT];
-        long[][] third  = new long[LETTER_COUNT][LETTER_COUNT];
+        long[] arr1     = new long[LETTER_COUNT];
+        long[][] arr2   = new long[LETTER_COUNT][LETTER_COUNT];
+        long[][] arr3   = new long[LETTER_COUNT][LETTER_COUNT];
 
         String vowels   = "aeiou";          // for testing only
 
@@ -47,44 +47,51 @@ public class ShortPalindrome {
             // ???? ????
             System.out.println("<<< i: " + i + " c: " + c);
 
-
-            // ???? for testing only ????
+            // // ???? for testing only ????
             // int c = vowels.indexOf(s.charAt(i));
-            // ???? ????
+            // //???? ????
             // System.out.println("<<< i: " + i + " c: " + vowels.charAt(c));
 
 
             // **** update answer - O(m) ****
-            for (int j = 0; j < LETTER_COUNT; j++)
-                ans = (ans + third[c][j]) % MOD;
-
-            // ???? ????
-            System.out.println("<<< ans: " + ans);
-            
-            // **** update contents of third and second arrays - O(m) ****
             for (int j = 0; j < LETTER_COUNT; j++) {
-                third[j][c]     = (third[j][c] + second[j][c]) % MOD;
-                second[j][c]    = (second[j][c] + first[j]) % MOD;
+
+                // ???? ????
+                if (arr3[c][j] != 0)
+                    System.out.println("<<< ans: " + ans + " arr3[" + c + "][" + j + "]: " + arr3[c][j]);
+
+                // **** ****
+                ans = (ans + arr3[c][j]) % MOD;
             }
 
 
             // ???? ????
-            // System.out.println("<<< third:");
-            // for (int k = 0; k < third.length; k++)
-            //     System.out.println(Arrays.toString(third[k]));
+            System.out.println("<<< ans: " + ans);
             
-            // ???? ????
-            // System.out.println("<<< second:");
-            // for (int k = 0; k < second.length; k++)
-            //     System.out.println(Arrays.toString(second[k]));
+
+            // **** update contents of arrays arr3 and arr2 - O(m) ****
+            for (int j = 0; j < LETTER_COUNT; j++) {
+                arr3[j][c]  = (arr3[j][c] + arr2[j][c]) % MOD;
+                arr2[j][c]  = (arr2[j][c] + arr1[j]) % MOD;
+            }
 
 
-            // **** update contents of first array ****
-            first[c] += 1;
+            // // ???? for testing only ????
+            // System.out.println("<<< arr3:");
+            // for (int k = 0; k < arr3.length; k++)
+            //     System.out.println(Arrays.toString(arr3[k]));
+            
+            // // ???? for testing only ????
+            // System.out.println("<<< arr2:");
+            // for (int k = 0; k < arr2.length; k++)
+            //     System.out.println(Arrays.toString(arr2[k]));
 
-            // ???? ????
-            System.out.println("<<< first:\n" + Arrays.toString(first));
-            // System.out.println("<<< first[" + c + "]: " + first[c]);
+
+            // **** update contents of array arr1 ****
+            arr1[c] += 1;
+
+            // ???? for testing only ????
+            // System.out.println("<<< arr1:\n" + Arrays.toString(arr1));
         }
 
         // **** adjust and return answer ****
